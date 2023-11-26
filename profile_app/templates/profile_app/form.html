@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Form{% endblock title %}
+{% block content %}
+<form  method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" class="btn btn-primary">Submit</button>
+  {% comment %} <div class="row my-3">
+    <div class="col">
+      {{form.name.label_tag}}
+      <input type="text" class="form-control" name = {{form.name.name}} placeholder="Your name">
+    </div>
+    <div class="col">
+      {{form.age.label_tag}}
+      <input type="number" class="form-control" name = {{form.age.name}} placeholder="Your age">
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      {{form.father.label_tag}}
+      <input type="text" class="form-control" name = {{form.father.name}} placeholder="Father's name">
+    </div>
+    <div class="col">
+      {{form.occupation.label_tag}}
+      <input type="text" class="form-control" name = {{form.occupation.name}} placeholder="Father's occupation">
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      {{form.email.label_tag}}
+      <input type="email" class="form-control" name = {{form.email.name}} placeholder="Your email">
+    </div>
+    <div class="col">
+      {{form.birth_date.label_tag}}
+      <input type="date" class="form-control" name = {{form.birth_date.name}} placeholder="Your DOB">
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      {{form.profile_pic.label_tag}}
+      <input type="file" class="form-control" name = {{form.profile_pic.name}} placeholder="Choose Your Profile">
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      {{form.gender.label_tag}}
+      <select class="form-select" name="{{ form.gender.name }}">
+        {% for choice in form.gender.field.choices %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      {{ form.religion.label_tag }}
+      <select class="form-select" name="{{ form.religion.name }}">
+        {% for religion in form.religion.field.choices %}
+          <option value="{{ religion.0 }}">{{ religion.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      {{ form.sects.label_tag }}
+      <select class="form-select" name="{{ form.sects.name }}">
+        {% for sect in form.sects.field.choices %}
+          <option value="{{ sect.0 }}">{{ sect.1 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col">
+      {{ form.hobbies.label_tag }}
+      <div class="form-check">
+        {% for hobby in form.hobbies.field.choices %}
+          <input class="form-check-input" type="checkbox" name="{{ form.hobbies.name }}" value="{{ hobby.0 }}">
+          <label class="form-check-label" for="{{ form.hobbies.name }}_{{ hobby.0 }}">{{ hobby.1 }}</label><br>
+        {% endfor %}
+    </div>
+    <div class="col">
+      {{form.is_married.label}}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="married_check" name="form.is_married.name">
+        <label class="form-check-label" for="married_check">
+        Married
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div> {% endcomment %}
+</form>
+{% endblock content %}

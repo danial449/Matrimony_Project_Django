@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Profile Details{% endblock title %}
+{% block content %}
+ <!-- <h1>This is profile of {{Profile.name}}</h1> -->
+ <div class="header_img">
+    <div class="image">
+        <img src="{{Profile.profile_pic.url}}" alt="profile_image">
+    </div>
+</div>
+
+<div class="info">
+    <ul>
+        <li><span>Name</span> : {{Profile.name}}</li>
+        <li><span>Age</span> : {{Profile.age}}</li>
+        <li><span>Gender</span> : {{Profile.gender}}</li>
+        <li><span>Email</span> : {{Profile.email}}</li>
+        <li><span>Occupation</span> : {{Profile.occupation}}</li>
+        <li><span>DOB</span> : {{Profile.birth_date}}</li>
+        <li><span>Married Status</span> : 
+            {% if Profile.is_married %}
+                Married
+            {% else %}
+                Not Married
+            {% endif %}
+        </li>
+        <li><span>Father Name</span> : {{Profile.father.name}}</li>
+        <li><span>Father Occupation</span> : {{Profile.father.occupation}}</li>
+        <li><span>Religion</span> : {{ profile.religion.name}}<li><span>Sects</span> :
+        {% for sect in Profile.sects.all %}
+            {{ sect.name }}
+        {% endfor %}
+        </li>
+        <li><span>Caste</span> :
+        {% for caste in Profile.caste.all %}
+            {{ caste.name }}
+        {% endfor %}
+        </li>
+        <li><span>Hobbies</span> :      
+            {% for hobby in Profile.hobbies.all  %}
+            {{hobby}}
+            {% endfor %}
+            </ul>    
+        </li>
+    </ul>
+    
+    <div class="d-grid gap-2 container">
+        <a class="btn btn-danger" href="{% url 'profile_app:profile_delete' Profile.id%}" role="button">Delete</a>
+        <a class="btn btn-primary" href="{% url 'profile_app:profile_list'%}" role="button">Back</a>
+      </div>
+</div>
+{% endblock content %}

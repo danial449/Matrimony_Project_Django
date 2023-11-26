@@ -1,0 +1,44 @@
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'profile_app:profile_list'%}" class="nav-link px-2 text-secondary">Home</a></li>
+          <li><a href="{% url 'profile_app:profile_create'%}" class="nav-link px-2 text-white">Create Profile</a></li>
+          <li><a href="{% url 'blog:post_list'%}" class="nav-link px-2 text-white">Blogs</a></li>
+          <li><a href="{% url 'profile_app:contactform'%}" class="nav-link px-2 text-white">Contact Us</a></li>
+        </ul>
+
+        <form action="{% url 'profile_app:profile_search' %}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" name="search_query" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+      </form>
+      
+
+        <div class="text-end">
+          {% if user.is_authenticated %}
+          <div class="d-flex align-items-center">
+
+            <div  class="dropdown">
+              <button class="btn text-white dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Hi, {{ user.username }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{% url 'password_change'%}" >Change password</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:delete_account'%}" >Delete account</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}" >Logout</a></li>
+              </ul>
+            </div>
+          
+          {% else %}
+              <a href="{% url 'accounts:login' %}" class="btn btn-outline-light me-2">Login</a>
+              <a href="{% url 'accounts:register' %}" class="btn btn btn-warning">Register</a>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </header>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Profile List{% endblock title %}
+{% block content %}
+<h1 class="m-5">Profile of Users</h1>
+   {% if profiles %}
+      <div class="row">
+        {% for profile in profiles %}
+            <div class="col-md-4" >
+                <div class="card d-flex" style="width: 18rem; height: 100%; ">
+                    {% if profile.profile_pic %}
+                    <img src="{{ profile.profile_pic.url }}" alt="profile_image">
+                {% else %}
+                    <p>No profile picture available</p>
+                {% endif %}
+                    <div class="card-body">
+                      <h5 class="card-title">{{profile.name}}</h5>
+                      <a href="{% url 'profile_app:profile_detail' profile.id %}" class="btn btn-primary">Profile Details</a>
+                    </div>
+                  </div>
+            </div>
+        {% endfor %}
+      </div>
+   {% endif %}
+{% endblock content %}
+
+
+    {% comment %} {% block content %}
+    <h1>This is profile lists</h1>
+
+    {% if profiles %}
+    <ul>
+        {% for profile in profiles %}
+        <div class="profile">
+            <div class="image">
+                <img src=" {{profile.profile_pic.url}}" alt="Profile_Image">
+            </div>
+            <div class="name">
+                <a href="{% url 'profile_app:profile_detail' profile.name %}">{{profile.name}}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock content %} {% endcomment %}
